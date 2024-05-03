@@ -14,6 +14,7 @@ FROM base as final-private
 
 # Copy the mathpass secret to the Wolfram Engine licensing directory
 RUN --mount=type=secret,id=mathpass \
+    mkdir -p /root/.WolframEngine/Licensing && \
     cp /run/secrets/mathpass /root/.WolframEngine/Licensing/mathpass
 
 # Start evaluation function AWS Lambda handler
