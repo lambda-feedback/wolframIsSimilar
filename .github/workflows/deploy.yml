@@ -148,7 +148,7 @@ jobs:
           IMAGE_NAME: ${{ needs.build.outputs.image_name_staging }}
           FUNCTION_NAME: ${{ needs.setup.outputs.evaluation_function_name }}
         run: |
-          curl --location --request POST "$BACKEND_API_URL/grading-function/ensure" \
+          curl -f --location --request POST "$BACKEND_API_URL/grading-function/ensure" \
           --header 'content-type: application/json' \
           --data-raw "{
               \"apiKey\": \"$API_KEY\",
@@ -180,7 +180,7 @@ jobs:
           IMAGE_NAME: ${{ needs.build.outputs.image_name_production }}
           FUNCTION_NAME: ${{ needs.setup.outputs.evaluation_function_name }}
         run: |
-          curl --location --request POST "$BACKEND_API_URL/grading-function/ensure" \
+          curl -f --location --request POST "$BACKEND_API_URL/grading-function/ensure" \
           --header 'content-type: application/json' \
           --data-raw "{
               \"apiKey\": \"$API_KEY\",
