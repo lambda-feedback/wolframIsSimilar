@@ -29,7 +29,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check Wolfram Licence Key
-        env: 
+        env:
           MATHPASS: ${{ secrets.WOLFRAM_ENGINE_MATHPASS }}
         if: ${{ env.MATHPASS == '' }}
         run: |
@@ -106,6 +106,8 @@ jobs:
           provenance: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max,ignore-error=true
           secrets: |
             "mathpass=${{ secrets.WOLFRAM_ENGINE_MATHPASS }}"
 
