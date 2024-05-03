@@ -19,16 +19,22 @@ equalQAssociation =
                 correctQ = TrueQ[#answer == #response]
             ];
             <|
-                "is_correct" -> correctQ
+                "command" -> "eval"
                 ,
-                "feedback" ->
-                    If[correctQ,
-                        #params["correct_response_feedback"]
+                "result" ->
+                    {
+                        "is_correct" -> correctQ
                         ,
-                        #params["incorrect_response_feedback"]
-                    ]
-                ,
-                "error" -> error
+                        "feedback" ->
+                            If[correctQ,
+                                #params["correct_response_feedback"]
+                                ,
+                                #params["incorrect_response_feedback"
+                                    ]
+                            ]
+                        ,
+                        "error" -> error
+                    }
             |>
         ]
     ];
