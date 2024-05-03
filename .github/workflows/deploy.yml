@@ -26,7 +26,8 @@ jobs:
 
       - name: Check Wolfram Licence Key
         run: |
-          [[ -z "${{ secrets.WOLFRAM_ENGINE_MATHPASS }}" ]] && { echo "Set WOLFRAM_ENGINE_MATHPASS in secrets" ; exit 1; }
+          LICENCE_KEY="${{ secrets.WOLFRAM_ENGINE_LICENCE }}"
+          [[ -z "$LICENCE_KEY" ]] && { echo "Set WOLFRAM_ENGINE_MATHPASS in secrets" ; exit 1; }
 
       - name: Parse config.json
         id: config
