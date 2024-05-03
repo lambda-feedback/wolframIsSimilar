@@ -25,9 +25,12 @@ jobs:
           fetch-depth: 0
 
       - name: Check Wolfram Licence Key
+        env: 
+          MATHPASS: ${{ secrets.WOLFRAM_ENGINE_MATHPASS }}
+        if: ${{ env.MATHPASS == '' }}
         run: |
-          LICENCE_KEY="${{ secrets.WOLFRAM_ENGINE_MATHPASS }}"
-          [[ -z "$LICENCE_KEY" ]] && { echo "Set WOLFRAM_ENGINE_MATHPASS in secrets" ; exit 1; }
+          echo "Set WOLFRAM_ENGINE_MATHPASS in secrets"
+          exit 1
 
       - name: Parse config.json
         id: config
