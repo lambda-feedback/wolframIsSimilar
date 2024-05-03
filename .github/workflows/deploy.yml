@@ -35,13 +35,9 @@ jobs:
       - name: Parse config.json
         id: config
         run: |
-          content=`cat ./config.json`
-          # the following lines are only required for multi line json
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          # end of optional handling for multi line json
-          echo "::set-output name=config::$content"
+          echo 'config<<EOF' >> $GITHUB_OUTPUT
+          cat ./config.json >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
 
       - name: Get Evaluation Function Name
         id: evaluation_function_name
