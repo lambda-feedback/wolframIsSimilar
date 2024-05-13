@@ -94,6 +94,7 @@ jobs:
           tags: |
             type=raw,value=${{ needs.setup.outputs.evaluation_function_name }}
           images: |
+            ghcr.io/${{ github.repository }}/lambda
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY_STAGING }}
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY_PRODUCTION }}
 
