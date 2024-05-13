@@ -36,7 +36,7 @@ This gives you a password that you can copy to a `mathpass` file on your host ma
 Run the following command to start the Wolfram Engine container with the license:
 
 ```bash
-docker run -it --rm -v $(pwd)/mathpass:/home/wolframengine/.WolframEngine/Licensing wolframresearch/wolframengine
+docker run -it --rm -v $(pwd)/mathpass:/home/wolframengine/.WolframEngine/Licensing/mathpass wolframresearch/wolframengine
 ```
 
 This command assumes that you have a `mathpass` file in the current directory, and the container is started with the `wolframengine` user.
