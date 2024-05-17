@@ -20,6 +20,11 @@ COPY ./evaluation_function.wl /app/evaluation_function.wl
 # and is started with the shimmy lambda command.
 FROM base as lambda
 
+ENV MATHEMATICA_USERBASE="/tmp/home/.WolframEngine"
+ENV MATHEMATICAPLAYER_USERBASE="/tmp/home/.WolframEngine"
+ENV WOLFRAM_CACHEBASE="/tmp/home/.cache/Wolfram"
+ENV WOLFRAM_LOG_DIRECTORY="/tmp/home/.Wolfram/Logs"
+
 # Copy the mathpass secret to the Wolfram Engine licensing directory.
 # See https://hub.docker.com/r/wolframresearch/wolframengine for more information.
 RUN --mount=type=secret,id=mathpass \
