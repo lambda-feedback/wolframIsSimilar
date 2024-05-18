@@ -20,6 +20,7 @@ COPY ./evaluation_function.wl /app/evaluation_function.wl
 # and is started with the shimmy lambda command.
 FROM base as lambda
 
+ENV HOME="/tmp/home"
 ENV WOLFRAM_USERBASEDIRECTORY="/tmp/home"
 ENV WOLFRAM_USERDOCUMENTSDIRECTORY="/tmp/home/Documents"
 ENV WOLFRAM_DOCUMENTSDIRECTORY="/tmp/home/Documents"
