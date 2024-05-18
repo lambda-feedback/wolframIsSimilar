@@ -24,9 +24,11 @@ ENV HOME="/tmp/home"
 ENV WOLFRAM_USERBASEDIRECTORY="/tmp/home"
 ENV WOLFRAM_USERDOCUMENTSDIRECTORY="/tmp/home/Documents"
 ENV WOLFRAM_DOCUMENTSDIRECTORY="/tmp/home/Documents"
+ENV MATHEMATICA_USERBASE="/tmp/home/.WolframEngine"
+ENV MATHEMATICAPLAYER_USERBASE="/tmp/home/.WolframEngine"
 
 # Copy the mathpass secret to the Wolfram Engine licensing directory.
 # See https://hub.docker.com/r/wolframresearch/wolframengine for more information.
 RUN --mount=type=secret,id=mathpass \
-    mkdir -p /root/.WolframEngine/Licensing && \
-    cp /run/secrets/mathpass /root/.WolframEngine/Licensing/mathpass
+    mkdir -p /tmp/home/.WolframEngine/Licensing && \
+    cp /run/secrets/mathpass /tmp/home/.WolframEngine/Licensing/mathpass
