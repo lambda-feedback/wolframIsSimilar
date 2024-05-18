@@ -1,5 +1,3 @@
-# Final layer for public images, which does not contain the wolfram licence key,
-# and is started with the shimmy serve command.
 FROM ghcr.io/lambda-feedback/evaluation-function-base/wolfram:latest
 
 # Command to start the evaluation function with
