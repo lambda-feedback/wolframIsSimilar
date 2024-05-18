@@ -12,4 +12,3 @@ jobs:
     uses: lambda-feedback/evaluation-function-workflows/.github/workflows/build.yml@main
     with:
       template-repository-name: 'lambda-feedback/evaluation-function-boilerplate-wolfram'
-      build-target: base
