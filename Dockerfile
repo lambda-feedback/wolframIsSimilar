@@ -31,7 +31,7 @@ ENV WOLFRAM_CACHEBASE="/tmp/home/.cache/Wolfram"
 ENV WOLFRAM_LOG_DIRECTORY="/tmp/home/.Wolfram/Logs"
 
 # Copy the mathpass secret to the Wolfram Engine licensing directory.
-# See https://hub.docker.com/r/wolframresearch/wolframengine for more information.
-RUN --mount=type=secret,id=mathpass \
-    mkdir -p /tmp/home/.WolframEngine/Licensing && \
-    cp /run/secrets/mathpass /tmp/home/.WolframEngine/Licensing/mathpass
+# This is only working for local development, as the secret is machine-bound.
+# RUN --mount=type=secret,id=mathpass \
+#     mkdir -p /tmp/home/.WolframEngine/Licensing && \
+#     cp /run/secrets/mathpass /tmp/home/.WolframEngine/Licensing/mathpass
