@@ -2,42 +2,43 @@
 including to within a given tolerance; input and output as
 Associations *)
 
-equalQAssociation =
-    Function[
-        Module[{tolerance, correctQ, error},
-            If[NumericQ[#answer],
-                tolerance =
-                    If[#params["tolerance_is_absolute"],
-                        #params["tolerance"]
-                        ,
-                        #params["tolerance"] * #params["answer"]
-                    ];
-                error = Abs[#answer - #response];
-                correctQ = TrueQ[error <= tolerance]
-                ,
-                error = "not applicable";
-                correctQ = TrueQ[#answer == #response]
-            ];
-            <|
-                "command" -> "eval"
-                ,
-                "result" ->
-                    {
-                        "is_correct" -> correctQ
-                        ,
-                        "feedback" ->
-                            If[correctQ,
-                                #params["correct_response_feedback"]
-                                ,
-                                #params["incorrect_response_feedback"
-                                    ]
-                            ]
-                        ,
-                        "error" -> error
-                    }
-            |>
-        ]
-    ];
+equalQAssociation = 
+  Function[input,
+    Module[{tolerance, correctQ, error, answer, response, params},
+      answer = input["answer"];
+      response = input["response"];
+      params = input["params"];
+      
+      If[NumericQ[answer],
+        tolerance = 
+          If[TrueQ[params["tolerance_is_absolute"]],
+            params["tolerance"],
+            params["tolerance"] * answer
+          ];
+        error = Abs[answer - response];
+        correctQ = TrueQ[error <= tolerance],
+        error = "not applicable";
+        correctQ = TrueQ[answer == response]
+      ];
+
+      feedback =
+        If[correctQ,
+            params["correct_response_feedback"]
+            ,
+            params["incorrect_response_feedback"]
+        ];
+
+      
+      <|
+        "command" -> "eval",
+        "result" -> <|
+          "is_correct" -> correctQ,
+          "feedback" -> feedback
+        |>
+      |>
+    ]
+  ];
+
 
 (* A function to test whether a response is equal to an answer, \
 including to within a given tolerance; input and output as
