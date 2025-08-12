@@ -29,14 +29,14 @@ In[1] := $PasswordFile // FilePrint
 1e1d781ed0a3    6520-03713-97466        4304-2718-2K5ATR        5095-179-696:2,0,8,8:80001:20190627
 ```
 
-This gives you a password that you can copy to a `mathpass` file on your host machine.
+This gives you a password that you can copy to a `mathpass` file on your host machine. Recommended to store in the `local directory/Licensing`
 
-**4. Run the Wolfram Engine container**
+**4. Run the Evaluation Function container**
 
 Run the following command to start the Wolfram Engine container with the license:
 
 ```bash
-docker run -it --rm -v $(pwd)/mathpass:/home/wolframengine/.WolframEngine/Licensing/mathpass wolframresearch/wolframengine
+docker run -it --rm -v $(pwd)/Licensing:/home/wolframengine/.WolframEngine/Licensing/ {evaluation_function_tag}
 ```
 
-This command assumes that you have a `mathpass` file in the current directory, and the container is started with the `wolframengine` user.
+This command assumes that you have a `mathpass` file in the Licensing directory, and the container is started with the `wolframengine` user.

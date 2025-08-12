@@ -2,42 +2,43 @@
 including to within a given tolerance; input and output as
 Associations *)
 
-equalQAssociation =
-    Function[
-        Module[{tolerance, correctQ, error},
-            If[NumericQ[#answer],
-                tolerance =
-                    If[#params["tolerance_is_absolute"],
-                        #params["tolerance"]
-                        ,
-                        #params["tolerance"] * #params["answer"]
-                    ];
-                error = Abs[#answer - #response];
-                correctQ = TrueQ[error <= tolerance]
-                ,
-                error = "not applicable";
-                correctQ = TrueQ[#answer == #response]
-            ];
-            <|
-                "command" -> "eval"
-                ,
-                "result" ->
-                    {
-                        "is_correct" -> correctQ
-                        ,
-                        "feedback" ->
-                            If[correctQ,
-                                #params["correct_response_feedback"]
-                                ,
-                                #params["incorrect_response_feedback"
-                                    ]
-                            ]
-                        ,
-                        "error" -> error
-                    }
-            |>
-        ]
-    ];
+equalQAssociation = 
+  Function[input,
+    Module[{data, tolerance, correctQ, error, answer, response, params, feedback},
+      (*Get the evaluation parameters from the incoming request*)
+      data = input["params"];
+      answer = data["answer"];
+      response = data["response"];
+      params = data["params"];
+
+      If[NumericQ[answer],
+        tolerance = 
+          If[TrueQ[params["tolerance_is_absolute"]],
+            params["tolerance"],
+            params["tolerance"] * answer
+          ];
+        error = Abs[answer - response];
+        correctQ = TrueQ[error <= tolerance],
+        error = "not applicable";
+        correctQ = TrueQ[answer == response]
+      ];
+
+      feedback =
+        If[correctQ,
+            params["correct_response_feedback"],
+            params["incorrect_response_feedback"]
+        ];
+
+      <|
+        "command" -> "eval",
+        "result" -> <|
+          "is_correct" -> correctQ,
+          "feedback" -> feedback
+        |>
+      |>
+    ]
+  ];
+
 
 (* A function to test whether a response is equal to an answer, \
 including to within a given tolerance; input and output as
@@ -57,6 +58,6 @@ Calls equalQAssociation  *)
 equalQIO = Function[Export[#2, equalQAssociation[Import[#1, "JSON"] //.
      List :> Association], "JSON", "Compact" -> True]];
 
-argv = Rest[$ScriptCommandLine]
+argv = Rest[$ScriptCommandLine];
 
 equalQIO[argv[[1]], argv[[2]]]
