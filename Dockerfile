@@ -1,5 +1,4 @@
-#FROM ghcr.io/lambda-feedback/evaluation-function-base/wolfram:latest
-FROM wolfram-base:latest
+FROM ghcr.io/lambda-feedback/evaluation-function-base/wolfram:latest
 
 # Command to start the evaluation function with
 ENV FUNCTION_COMMAND="wolframscript"
