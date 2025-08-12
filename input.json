@@ -1,10 +1,13 @@
 {
-  "answer": 1,
-  "response": 1,
+  "method": "eval",
   "params": {
-    "tolerance": 0.01,
-    "tolerance_is_absolute": true,
-    "correct_response_feedback": "Correct!",
-    "incorrect_response_feedback": "Try again."
+    "answer": 1,
+    "response": 1,
+    "params": {
+      "tolerance": 0.01,
+      "tolerance_is_absolute": true,
+      "correct_response_feedback": "Correct!",
+      "incorrect_response_feedback": "Try again."
+    }
   }
 }

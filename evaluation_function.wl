@@ -4,11 +4,13 @@ Associations *)
 
 equalQAssociation = 
   Function[input,
-    Module[{tolerance, correctQ, error, answer, response, params},
-      answer = input["answer"];
-      response = input["response"];
-      params = input["params"];
-      
+    Module[{data, tolerance, correctQ, error, answer, response, params, feedback},
+      (*Get the evaluation parameters from the incoming request*)
+      data = input["params"];
+      answer = data["answer"];
+      response = data["response"];
+      params = data["params"];
+
       If[NumericQ[answer],
         tolerance = 
           If[TrueQ[params["tolerance_is_absolute"]],
@@ -23,12 +25,10 @@ equalQAssociation =
 
       feedback =
         If[correctQ,
-            params["correct_response_feedback"]
-            ,
+            params["correct_response_feedback"],
             params["incorrect_response_feedback"]
         ];
 
-      
       <|
         "command" -> "eval",
         "result" -> <|
@@ -58,6 +58,6 @@ Calls equalQAssociation  *)
 equalQIO = Function[Export[#2, equalQAssociation[Import[#1, "JSON"] //.
      List :> Association], "JSON", "Compact" -> True]];
 
-argv = Rest[$ScriptCommandLine]
+argv = Rest[$ScriptCommandLine];
 
 equalQIO[argv[[1]], argv[[2]]]
