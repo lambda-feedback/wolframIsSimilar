@@ -12,7 +12,6 @@ jobs:
     uses: lambda-feedback/evaluation-function-workflows/.github/workflows/deploy.yml@feature/licence
     with:
       template-repository-name: 'lambda-feedback/evaluation-function-boilerplate-wolfram'
-      include-licence-file: true
     secrets:
       aws-key-id: ${{ secrets.LAMBDA_CONTAINER_PIPELINE_AWS_ID }}
       aws-secret-key: ${{ secrets.LAMBDA_CONTAINER_PIPELINE_AWS_SECRET}}
