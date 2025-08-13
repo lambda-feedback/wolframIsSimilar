@@ -11,5 +11,8 @@ ENV FUNCTION_INTERFACE="file"
 
 ENV LOG_LEVEL="DEBUG"
 
+# Copy Wolfram licence if present - stored as LICENCE.txt for working with the lambda_build Github Actions workflow
+RUN if [ -f dist/LICENSE.txt ]; then cp dist/LICENSE.txt /home/wolframengine/.WolframEngine/Licensing/mathpass; else echo "No license file found."; fi
+
 # Copy the evaluation function to the app directory
 COPY ./evaluation_function.wl /app/evaluation_function.wl
