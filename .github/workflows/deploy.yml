@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    uses: lambda-feedback/evaluation-function-workflows/.github/workflows/deploy.yml@feature/licence
+    uses: lambda-feedback/evaluation-function-workflows/.github/workflows/deploy.yml@main
     with:
       template-repository-name: 'lambda-feedback/evaluation-function-boilerplate-wolfram'
     secrets:
