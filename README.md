@@ -3,6 +3,8 @@
 This repository contains an implementation of a Wolfram evaluation function that checks if a numerical value is within a specified tolerance and if that tolerance should be applied as an absolute value. It can also handle validating the equality of non-numeric objects, such as Strings. 
 
 ## Development
+![Create Release Request](../..//issues/new?template=release-request.md)
+
 
 ### Run the Script
 

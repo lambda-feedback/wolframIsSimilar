@@ -1,0 +1,47 @@
+name: "Release Request"
+description: "Request a deployment by specifying the evaluation function, changes, target branch, and test confirmation."
+title: "release: <evaluation-function-name> → <branch>"
+labels:
+  - release
+  - deployment
+assignees: []
+body:
+  - type: input
+    id: evaluation_function_name
+    attributes:
+      label: Evaluation function name
+      description: "Exact name of the evaluation function or entrypoint to run/verify post-deploy."
+      placeholder: "e.g., evaluate_new_scoring_v3"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description_of_changes
+    attributes:
+      label: Description of changes
+      description: "Summarize what is changing and why. Include links to PRs, issues, or changelogs."
+      placeholder: |
+        - What changed:
+        - Why:
+        - Related PRs/Issues: #123, #456
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: branch_to_deploy
+    attributes:
+      label: Branch to deploy
+      description: "Name of the branch/ref to deploy (e.g., main, release/2025-09-29, hotfix/xyz)."
+      placeholder: "e.g., release/2025-09-29"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: test_confirmation
+    attributes:
+      label: Confirmation that tests passed
+      description: "Check the box to confirm CI is green for the target branch/PR."
+      options:
+        - label: "I confirm all required unit/integration tests have passed in CI for the target branch/PR."
+          required: true
