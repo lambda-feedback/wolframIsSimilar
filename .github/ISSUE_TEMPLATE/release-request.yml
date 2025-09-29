@@ -1,20 +1,11 @@
 name: "Release Request"
-description: "Request a deployment by specifying the evaluation function, changes, target branch, and test confirmation."
-title: "release: <evaluation-function-name> → <branch>"
+description: "Request a deployment by specifying the evaluation function, changes, target commit/branch, and test confirmation."
+title: "Release Request"
 labels:
   - release
   - deployment
 assignees: []
 body:
-  - type: input
-    id: evaluation_function_name
-    attributes:
-      label: Evaluation function name
-      description: "Exact name of the evaluation function or entrypoint to run/verify post-deploy."
-      placeholder: "e.g., evaluate_new_scoring_v3"
-    validations:
-      required: true
-
   - type: textarea
     id: description_of_changes
     attributes:
@@ -29,19 +20,14 @@ body:
       required: true
 
   - type: input
-    id: branch_to_deploy
+    id: commit_or_branch_to_deploy
     attributes:
-      label: Branch to deploy
-      description: "Name of the branch/ref to deploy (e.g., main, release/2025-09-29, hotfix/xyz)."
-      placeholder: "e.g., release/2025-09-29"
+      label: Commit or branch to deploy
+      description: |
+        Specify either a commit hash (recommended for precision) or branch name to deploy.
+        
+        **To get a commit hash from GitHub:**
+        Navigate to the commit in the web interface and copy the full SHA from the commit page.
+      placeholder: "e.g., a1b2c3d4e5f6789... or release/2025-09-29"
     validations:
       required: true
-
-  - type: checkboxes
-    id: test_confirmation
-    attributes:
-      label: Confirmation that tests passed
-      description: "Check the box to confirm CI is green for the target branch/PR."
-      options:
-        - label: "I confirm all required unit/integration tests have passed in CI for the target branch/PR."
-          required: true
