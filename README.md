@@ -61,7 +61,7 @@ Which gives the response:
 ```bash
 .github/workflows/
     build.yml          # builds the public evaluation function image
-    deploy.yml         # deploys the evaluation function to Lambda Feedback
+    staging-deploy.yml         # deploys the evaluation function to Lambda Feedback
 
 evaluation_function.wl # evaluation function source code
 
@@ -132,7 +132,7 @@ This section guides you through the deployment process of the evaluation functio
 
 Deploying the evaluation function to Lambda Feedback is simple and straightforward, as long as the repository is within the [Lambda Feedback organization](https://github.com/lambda-feedback).
 
-After configuring the repository, a [GitHub Actions workflow](.github/workflows/deploy.yml) will automatically build and deploy the evaluation function to Lambda Feedback as soon as changes are pushed to the main branch of the repository.
+After configuring the repository, a [GitHub Actions workflow](.github/workflows/staging-deploy.yml) will automatically build and deploy the evaluation function to Lambda Feedback as soon as changes are pushed to the main branch of the repository.
 
 **Configuration**
 
