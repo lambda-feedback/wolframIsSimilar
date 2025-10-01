@@ -19,7 +19,7 @@ on:
         default: 'main'
 jobs:
   deploy:
-    uses: lambda-feedback/evaluation-function-workflows/.github/workflows/staging-deploy.yml@deploy-request
+    uses: lambda-feedback/evaluation-function-workflows/.github/workflows/deploy.yml@deploy-request
     with:
       template-repository-name: 'lambda-feedback/evaluation-function-boilerplate-wolfram'
       build-platforms: 'gcp'
