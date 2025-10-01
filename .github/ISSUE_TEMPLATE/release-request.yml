@@ -20,14 +20,20 @@ body:
       required: true
 
   - type: input
-    id: commit_or_branch_to_deploy
+    id: branch_to_deploy
     attributes:
-      label: Commit or branch to deploy
+      label: Branch to deploy
       description: |
-        Specify either a commit hash (recommended for precision) or branch name to deploy.
-        
-        **To get a commit hash from GitHub:**
-        Navigate to the commit in the web interface and copy the full SHA from the commit page.
-      placeholder: "e.g., a1b2c3d4e5f6789... or release/2025-09-29"
+        Specify Branch name to deploy.
+      placeholder: "e.g., release/2025-09-29"
     validations:
       required: true
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ⚡ Click the Link Below to Run the Workflow
+        
+        Clicking the link will take you to the Actions page. You will need to click the **"Run workflow"** button there to start the process.
+        
+        ## [➡️ Go to Workflow Run Page](https://github.com/lambda-feedback/wolframIsSimilar/blob/main/.github/workflows/production-deploy.yml)
