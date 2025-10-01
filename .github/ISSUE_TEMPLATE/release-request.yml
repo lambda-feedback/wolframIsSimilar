@@ -50,4 +50,4 @@ body:
         
         Clicking the link will take you to the Actions page. You will need to click the **"Run workflow"** button there to start the process.
         
-        ## [➡️ Go to Workflow Run Page](https://github.com/lambda-feedback/wolframIsSimilar/blob/main/.github/workflows/production-deploy.yml)
+        ## [➡️ Go to Workflow Run Page](actions/workflows/production-deploy.yml)
