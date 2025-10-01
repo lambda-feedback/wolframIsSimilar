@@ -29,6 +29,19 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: version-bump
+    attributes:
+      label: "🚀 What kind of update is this?"
+      description: "Tell us how significant this change is. This helps us set the correct new version number."
+      options:
+        - "Patch: A small fix for a bug. It won't break anything for existing users. (e.g., 1.2.3 ➔ 1.2.4)"
+        - "Minor: Adds a new feature, but doesn't change how existing ones work. A safe update. (e.g., 1.2.3 ➔ 1.3.0)"
+        - "Major: A big change that alters existing features. Users may need to update their work to adapt. (e.g., 1.2.3 ➔ 2.0.0)"
+      default: 0
+    validations:
+      required: true
+
   - type: markdown
     attributes:
       value: |
